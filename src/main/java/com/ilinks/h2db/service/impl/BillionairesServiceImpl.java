@@ -20,10 +20,10 @@ public class BillionairesServiceImpl implements BillionairesService {
 	@Override
 	public List<Billionaire> getAllBillionairs() {
 		List<Billionaire> records = repo.findAll();
-		System.out.println(records);
-		records.forEach(r -> {
-			System.out.println(r);
-		});
+//		System.out.println(records);
+//		records.forEach(r -> {
+//			System.out.println(r);
+//		});
 		return records;
 	}
 
