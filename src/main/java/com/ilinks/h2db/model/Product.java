@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "product")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")

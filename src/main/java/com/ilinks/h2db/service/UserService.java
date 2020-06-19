@@ -1,5 +1,7 @@
 package com.ilinks.h2db.service;
 
+import org.springframework.stereotype.Service;
+
 import com.ilinks.h2db.model.UserLogin;
 
 public interface UserService {

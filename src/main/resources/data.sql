@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `product_category` (
 	`category_name` VARCHAR(100) DEFAULT NULL,
 	`description` VARCHAR(255) DEFAULT NULL,
 	`category_image_url` VARCHAR(2000) DEFAULT NULL,
+	`children` INT(3) DEFAULT 0,
 	CONSTRAINT `prod_ctgry_parent` FOREIGN KEY (`primary_parent_category_id`) REFERENCES `product_category` (`product_category_id`)
 );
 
@@ -147,15 +148,15 @@ INSERT INTO user_login (username, password, first_name, last_name, parent_user_i
 	
 
 
-INSERT INTO product_category (product_category_id, primary_parent_category_id, category_name, description, category_image_url) VALUES
-	(1, null, 'ROOT', 'ROOT ', NULL),
-	(2, 1, 'Salads', 'Salads ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Tuna-Salad.jpg'),
-	(3, 1, 'Sandwiches', 'Sandwiches ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Halloumi-Cheese-Sandwich.jpg'),
-	(4, 1, 'Savoury', 'Savoury ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Vegetable-Puff.jpg'),
-	(5, 1, 'Viennoiserie', 'Viennoiserie ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Croissant-Butter.jpg'),
-	(6, 1, 'Bread', 'Bread ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Bagel-With-Sesame.jpg'),
-	(7, 1, 'Cakes And Pastries', 'Cakes_n_Pastries ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Macaroon.jpg'),
-	(8, 1, 'Hot Dishes', 'Hot_Dishes ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Cream-Of-Mushroom-Soup.jpg');
+INSERT INTO product_category (product_category_id, primary_parent_category_id, category_name, description, category_image_url, children) VALUES
+	(1, null, 'ROOT', 'ROOT ', NULL, 7),
+	(2, 1, 'Salads', 'Salads ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Tuna-Salad.jpg', 0),
+	(3, 1, 'Sandwiches', 'Sandwiches ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Halloumi-Cheese-Sandwich.jpg', 4),
+	(4, 1, 'Savoury', 'Savoury ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Vegetable-Puff.jpg', 1),
+	(5, 1, 'Viennoiserie', 'Viennoiserie ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Croissant-Butter.jpg', 4),
+	(6, 1, 'Bread', 'Bread ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Bagel-With-Sesame.jpg', 7),
+	(7, 1, 'Cakes And Pastries', 'Cakes_n_Pastries ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Macaroon.jpg', 0),
+	(8, 1, 'Hot Dishes', 'Hot_Dishes ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Cream-Of-Mushroom-Soup.jpg',0);
 	
 INSERT INTO product_category (product_category_id, primary_parent_category_id, category_name, description, category_image_url) VALUES
 	(9, 3, 'Fish Sandwich', 'Fish_Sandwich ','https://www.grandcentralbakery.qa/wp-content/uploads/2018/07/Tuna-Club-Sandwich.jpg'),

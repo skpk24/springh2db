@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -25,6 +27,7 @@ public class ProductCategory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productCategoryId;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="primary_parent_category_id")
 	private ProductCategory productCategory;
@@ -38,7 +41,8 @@ public class ProductCategory {
 	@Column(name = "category_image_url")
 	private String categoryImageUrl;
 	
-	@OneToMany(mappedBy="productCategory", fetch = FetchType.LAZY)
-	private List<Product> products;
+	private Integer children;
+//	@OneToMany(mappedBy="productCategory", fetch = FetchType.LAZY)
+//	private List<Product> products;
 
 }
