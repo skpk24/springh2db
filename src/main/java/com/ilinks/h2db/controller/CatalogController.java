@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import com.ilinks.h2db.model.ProductCategoryMember;
 import com.ilinks.h2db.repo.ProductCategoryMemberRepo;
 import com.ilinks.h2db.repo.ProductCategoryRepo;
 import com.ilinks.h2db.repo.ProductRepo;
+import com.ilinks.h2db.util.AuthUtil;
 
 @RequestMapping("/api/catalog")
 @RestController
@@ -33,14 +35,17 @@ public class CatalogController {
 	private ProductRepo productRepo;
 	
 	@GetMapping("/categories")
-	public ResponseEntity<List<ProductCategory>> categories(){
+	public ResponseEntity<List<ProductCategory>> categories(@RequestHeader("token") String token){
+		if(AuthUtil.validateToken(token)==null) return null;
+		System.out.println("\n Values "+AuthUtil.validateToken(token)+"\n");
 		ProductCategory root = productCategoryRepo.findByProductCategoryId(1);
 		List<ProductCategory> categories = productCategoryRepo.findByProductCategory(root);
 		return ResponseEntity.ok(categories);
 	}
 	
 	@GetMapping("/categories/{id}")
-	public ResponseEntity<List<ProductCategory>> category(@PathVariable int id){
+	public ResponseEntity<List<ProductCategory>> category(@PathVariable int id, @RequestHeader("token") String token){
+		if(AuthUtil.validateToken(token)==null) return null;
 		ProductCategory root = productCategoryRepo.findByProductCategoryId(id);
 		List<ProductCategory> categories = productCategoryRepo.findByProductCategory(root);
 		return ResponseEntity.ok(categories);

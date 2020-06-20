@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -19,12 +21,15 @@ public class UserLogin {
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonIgnore
 	private int userId;
 	
 	@Column(name = "username")
+	@JsonIgnore
 	private String username;
 	
 	@Column(name = "password")
+	@JsonIgnore
 	private String password;
 	
 	@Column(name = "first_name")
@@ -40,6 +45,7 @@ public class UserLogin {
 	private BigDecimal wallet;
 	
 	@Column(name = "is_loggedin")
+	@JsonIgnore
 	private char isLoggedin;
 	
 	@Column(name = "category_code")
